@@ -1,28 +1,25 @@
 /**
  * Quickly builds applications with commonly-used npm modules.
  *
- * `build-starter` configs can be customized if a user-defined set of
+ * `taskR` configs can be customized if a user-defined set of
  * configs are defined.
  */
 
 'use strict';
 
+var merge = require('lodash.merge');
+var path = require('path');
 var Tasks = require('./config/tasks');
 var defaults = require('./config/defaults');
-var merge = require('lodash.merge');
 
-function getTask(gulp, task, opts) {
-    return require(opts.paths.tasks + task)(gulp, opts);
+function getTask(inst, task, opts) {
+    var fp = path.resolve(process.cwd(), opts.paths.tasks, task);
+    return require(fp)(inst, opts);
 }
 
-module.exports = function(gulp, tasks, opts) {
-    if (typeof gulp === 'undefined') {
-        throw new TypeError('taskR expects an instance of gulp as the first argument');
-    }
-
-    if (typeof opts === 'undefined') {
-        opts = tasks;
-        tasks = null;
+module.exports = function (inst, tasks, opts) {
+    if (typeof inst !== 'object') {
+        throw new TypeError('taskR expects an instance of inst as the first argument');
     }
 
     if (typeof tasks === 'string') {
@@ -33,6 +30,6 @@ module.exports = function(gulp, tasks, opts) {
     opts = merge({}, defaults, opts);
 
     tasks.forEach(function (task) {
-        gulp.task(task, getTask(gulp, task, opts));
+        inst.task(task, getTask(inst, task, opts));
     });
 };

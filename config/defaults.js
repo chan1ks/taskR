@@ -8,8 +8,7 @@ module.exports = {
     /** Relative paths to listen on for changes and compile destinations. */
     paths: {
         dist:         "./dist/",
-        tmp:          "./temp/",
-        src:          "./**/*.{ts,scss,jade}",
+        src:          "./**/*.{js,ts,css,scss,html,jade}",
         mock:         "",
         unit:         "",
         tasks:        ""
@@ -43,15 +42,15 @@ module.exports = {
 
     /** Necessary typescript details load here. */
     typescript: {
-        "compilerOptions": {
-            "target": "es5",
-            "module": "commonjs",
-            "moduleResolution": "node",
-            "sourceMap": true,
-            "emitDecoratorMetadata": true,
-            "experimentalDecorators": true,
-            "removeComments": false,
-            "noImplicitAny": false
+        compilerOptions: {
+            target: "es5",
+            module: "commonjs",
+            moduleResolution: "node",
+            sourceMap: true,
+            emitDecoratorMetadata: true,
+            experimentalDecorators: true,
+            removeComments: false,
+            noImplicitAny: false
         }
     },
 
