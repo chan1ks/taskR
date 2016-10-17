@@ -6,6 +6,10 @@ This project adheres to [Semantic Version-ing](http://semver.org/).
 - Update tasks to ES6/ES2016 syntax.
 - Update task's sync/async run-sequences to gulp 4+ release.
 
+### [1.0.0] - 2016-10-17
+#### Added
+- Unit tests with default tasks
+
 ### [0.9.0] - 2016-10-13
 #### Added
 - Default config for tasks lib location

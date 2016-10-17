@@ -1,6 +1,6 @@
 {
   "name": "taskR",
-  "version": "0.9.0",
+  "version": "1.0.0",
   "description": "Wrapper for loading a gulpfile at the current working directory.",
   "author": "Morgan Worrell",
   "license": "MIT",
