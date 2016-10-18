@@ -6,6 +6,14 @@ This project adheres to [Semantic Version-ing](http://semver.org/).
 - Update tasks to ES6/ES2016 syntax.
 - Update task's sync/async run-sequences to gulp 4+ release.
 
+### [1.1.0] - 2016-10-18
+#### Added
+- Travis CI file for build status.
+- Build status to module.
+
+#### Changed
+- Renamed `config` to `lib` directory.
+
 ### [1.0.0] - 2016-10-17
 #### Added
 - Unit tests with default tasks
@@ -17,6 +25,7 @@ This project adheres to [Semantic Version-ing](http://semver.org/).
 
 #### Changed
 - Refactored config loading for override options.
+- Refactored build tasks into their own modules.
 
 #### Deprecated
 - Class instantiation.
@@ -34,11 +43,11 @@ This project adheres to [Semantic Version-ing](http://semver.org/).
 
 ### [0.7.0] - 2016-06-06
 #### Changed
-- Created unit tests in jasmine.
+- Created unit tests in `mocha`.
 
 ### [0.6.4] - 2016-06-06
 #### Changed
-- Required defaults to module index.
+- Required config defaults to module index.
 
 ### [0.6.3] - 2016-06-03
 #### Changed

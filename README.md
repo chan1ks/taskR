@@ -1,4 +1,4 @@
-# taskR
+# taskR [![Build Status](https://travis-ci.org/chan1ks/taskR.svg?branch=master)](https://travis-ci.org/chan1ks/taskR)
 > Wrapper for loading a gulpfile at the current working directory.
 
 ### Install with [npm](npmjs.org):

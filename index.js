@@ -9,8 +9,8 @@
 
 var merge = require('lodash.merge');
 var path = require('path');
-var Tasks = require('./config/tasks');
-var defaults = require('./config/defaults');
+var Tasks = require('./lib/tasks');
+var defaults = require('./lib/defaults');
 
 function getTask(inst, task, opts) {
     var fp = path.resolve(process.cwd(), opts.paths.tasks, task);
