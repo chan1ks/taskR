@@ -6,6 +6,17 @@ This project adheres to [Semantic Version-ing](http://semver.org/).
 - Update tasks to ES6/ES2016 syntax.
 - Update task's sync/async run-sequences to gulp 4+ release.
 
+### [1.2.0] - 2016-10-20
+#### Added
+- New config for handling express server options
+
+#### Changed
+- Refactored config to simplify defaults and linting.
+- Separated sources into template, source, and stylesheet file paths.
+
+#### Deprecated
+- Removed `defaults` and `server`-specific options from config.
+
 ### [1.1.0] - 2016-10-18
 #### Added
 - Travis CI file for build status.

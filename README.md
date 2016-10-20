@@ -21,7 +21,7 @@ Customize your workflow based on your file structure preference keeping in mind 
 
 ```js
 var taskR = require('taskR');
-taskR(gulp, { server: {}, paths: {}, typescript: {}, tslint: {} });
+taskR(gulp, { paths: {}, bsync: {}, express: {}, lint: {} });
 ```
 
 **NOTE**: Leaving blank options will load defaults.
@@ -29,9 +29,9 @@ taskR(gulp, { server: {}, paths: {}, typescript: {}, tslint: {} });
 * `gulp` **{Object}**: Instance of gulp to pass into tasks.
 * `tasks` **{Array}**: List of tasks to be loaded. **NOTE**: Be sure to name the task and module the same.
 * `options.paths` **{Object}**: Paths for `temp/`, `dist/`, `src/`, etc. directories.
-* `options.server` **{Object}**: Define custom express or browser-sync server options. Leave blank for default browser-sync options.
-* `options.typescript` **{Object}**: Set to use typescript compiling with babel. Leaving blank will use vanilla javascript.
-* `options.tslint` **{Object}**: Lint typescript. Leaving blank will lint javascript.
+* `options.bsync` **{Object}**: Define custom browser-sync server options.
+* `options.express` **{Object}**: Set to use express server options with routes.
+* `options.lint` **{Object}**: Lint source files typescript.
 * `returns` **{String}**: Returns the state of Node.js process to the original working directory.
 
 ##### Default Runnable Tasks
@@ -72,49 +72,20 @@ var opts = {
     paths: {
         dist:   'path/to/dist/',
         src:    'path/to/src/',
+        temps:  'path/to/temps/',
+        styles: 'path/to/styles/',
         mock:   'path/to/mock/test/from/',
         unit:   'path/to/unit/test/from/',
         tasks:  'path/to/run/tasks/from/'
     }
 }
-
-taskR(gulp, opts);
 ```
 
 #### Server Options
 
 _**browser-sync**_ - Takes options from its [original module](https://www.browsersync.io/docs/options/).
 
-_**express**_
-
-- `httpPort` sets a http port to listen on
-- `httpsPort` **optional** sets a https port to listen on
-- `httpsKey` location of .key file in project
-- `httpsCert` location of .crt file in project
-- `proxies` sets proxy settings and takes a _string_ and/or _function_
-- `router` sets a handler function for middleware processes
-- `middleware`: _(coming soon)_
-
-Example:
-
-```js
-var opts = {
-    server: {
-        httpPort:   number,
-        httpsPort:  number,
-        httpsKey:   string,
-        httpsCert:  string,
-        proxies: {
-            target: string,
-            matcher: function() {}
-            // ...
-        },
-        router: function() {}
-    }
-}
-
-taskR(gulp, opts);
-```
+_**express**_ - Takes options from its [original module](http://expressjs.com/en/4x/api.html)
 
 #### Typescript Options
 
@@ -125,28 +96,6 @@ _**typescript**_ - Takes an object of compiler options needed to compile [typesc
 _**jslint**_ - Takes an object of [jshint](http://jshint.com/docs/options/) options.
 
 _**tslint**_ - Takes an object of [tslint](https://palantir.github.io/tslint/usage/tslint-json/) options.
-
-#### Defaults Options
-
-_**server**_ - Set which server to use (browser-sync or express). NOTE: server options need to be set accordingly for the server selected.
-_**compilers.jade**_ - Set to `true` to compile jade source scripts.
-_**compilers.scss**_ - Set to `true` to compile sass source scripts.
-_**compilers.ts**_ - Set to `true` to compile typescript source scripts.
-
-```js
-var opts = {
-    defaults: {
-        server:           "server-task", // browser-sync or express
-        compilers: {
-            jade:         boolean,
-            scss:         boolean,
-            ts:           boolean
-        }
-    }
-}
-
-taskR(gulp, opts);
-```
 
 ## Running tests
 
