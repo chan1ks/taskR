@@ -26,6 +26,14 @@ module.exports = function (inst, tasks, opts) {
         tasks = [tasks];
     }
 
+    if (opts.express && opts.bsync) {
+        throw new TypeError('taskR expects either an express or browser-sync option');
+    }
+
+    if (opts.jshint && opts.tslint) {
+        throw new TypeError('taskR expects either a jslinting or tslinting option');
+    }
+
     tasks = tasks || Tasks;
     opts = merge({}, defaults, opts);
 

@@ -21,7 +21,7 @@ Customize your workflow based on your file structure preference keeping in mind 
 
 ```js
 var taskR = require('taskR');
-taskR(gulp, { paths: {}, bsync: {}, express: {}, lint: {} });
+taskR(gulp, { paths: {}, bsync: {}, express: {}, tslint: {}, jshint: {} });
 ```
 
 **NOTE**: Leaving blank options will load defaults.

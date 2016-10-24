@@ -6,6 +6,13 @@ This project adheres to [Semantic Version-ing](http://semver.org/).
 - Update tasks to ES6/ES2016 syntax.
 - Update task's sync/async run-sequences to gulp 4+ release.
 
+### [1.3.0] - 2016-10-20
+#### Added
+- New config checks for excessively defined for linting and server options.
+
+#### Removed
+- Replaced `server` and `linting` properties.
+
 ### [1.2.0] - 2016-10-20
 #### Added
 - New config for handling express server options

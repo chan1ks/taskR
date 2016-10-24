@@ -20,6 +20,18 @@ describe('taskR', function () {
         support.tryTaskR(msg, taskR, done);
     });
 
+    it('should throw an error when two servers are defined', function (done) {
+        var taskR = support.taskR(taskR, gulp, 'default', {bsync: {}, express: {}});
+        msg = 'taskR expects either an express or browser-sync option';
+        support.tryTaskR(msg, taskR, done);
+    });
+
+    it('should throw an error when two linting module are defined', function (done) {
+        var taskR = support.taskR(taskR, gulp, 'default', {tslint: {}, jshint: {}});
+        msg = 'taskR expects either a jslinting or tslinting option';
+        support.tryTaskR(msg, taskR, done);
+    });
+
     it('should find a single custom task without errors', function (done) {
         var taskR = support.taskR(taskR, gulp, 'default', {paths: {tasks: 'lib/tasks/'}});
         support.tryTaskR(msg, taskR, done);
