@@ -14,25 +14,18 @@ In a gulpfile, add:
 ```js
 var gulp = require('gulp');
 var taskR = require('taskR');
-taskR(gulpInstance [, taskOrTasks, options]);
+taskR(gulpInstance, [taskOrTasks] [, options]);
 ```
 
-Customize your workflow based on your file structure preference keeping in mind that _**browser-sync watches on `dist/` relative to the project's root, but ignores mapped files if run without user-defined configs**_.
+Customize your workflow based on your file structure preference.
 
 ```js
 var taskR = require('taskR');
-taskR(gulp, { paths: {}, bsync: {}, express: {}, tslint: {}, jshint: {} });
+taskR(gulp, [task1, task2...], { paths: {}, server: {}, lint: {} });
 ```
-
-**NOTE**: Leaving blank options will load defaults.
 
 * `gulp` **{Object}**: Instance of gulp to pass into tasks.
 * `tasks` **{Array}**: List of tasks to be loaded. **NOTE**: Be sure to name the task and module the same.
-* `options.paths` **{Object}**: Paths for `temp/`, `dist/`, `src/`, etc. directories.
-* `options.bsync` **{Object}**: Define custom browser-sync server options.
-* `options.express` **{Object}**: Set to use express server options with routes.
-* `options.lint` **{Object}**: Lint source files typescript.
-* `returns` **{String}**: Returns the state of Node.js process to the original working directory.
 
 ##### Default Runnable Tasks
 
@@ -51,51 +44,6 @@ $ gulp prod --port [number]
 ```sh
 $ gulp mock
 ```
-
-### Options
-An object of user-defined settings is **optional** on most options except the paths object. 
-
-#### Directory Options
-
-**NOTE**: these options are required (and probably a good idea to include them).
-
-_**paths**_
-
-- dist - path where compiled files are served from
-- src - location of all source files including assets
-- mock - location of E2E test source files
-- unit - location for all testing source files
-- tasks - location custom build tasks
-
-```js
-var opts = {
-    paths: {
-        dist:   'path/to/dist/',
-        src:    'path/to/src/',
-        temps:  'path/to/temps/',
-        styles: 'path/to/styles/',
-        mock:   'path/to/mock/test/from/',
-        unit:   'path/to/unit/test/from/',
-        tasks:  'path/to/run/tasks/from/'
-    }
-}
-```
-
-#### Server Options
-
-_**browser-sync**_ - Takes options from its [original module](https://www.browsersync.io/docs/options/).
-
-_**express**_ - Takes options from its [original module](http://expressjs.com/en/4x/api.html)
-
-#### Typescript Options
-
-_**typescript**_ - Takes an object of compiler options needed to compile [typescript](https://www.typescriptlang.org/docs/tutorial.html) source files (see [typescript options](https://www.typescriptlang.org/docs/handbook/compiler-options.html)).
-
-#### Linting Options
-
-_**jslint**_ - Takes an object of [jshint](http://jshint.com/docs/options/) options.
-
-_**tslint**_ - Takes an object of [tslint](https://palantir.github.io/tslint/usage/tslint-json/) options.
 
 ## Running tests
 

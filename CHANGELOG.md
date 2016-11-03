@@ -3,8 +3,19 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Version-ing](http://semver.org/).
 
 ## [Unreleased]
-- Update tasks to ES6/ES2016 syntax.
 - Update task's sync/async run-sequences to gulp 4+ release.
+
+### [2.0.0] - 2016-11-02
+#### Changed
+- Tasks argument only accepts an array of strings matching gulp's task and dependency handling.
+- Revealed APIs for `tasks` and `ops` for list of tasks and options.
+
+#### Removed
+- Defaults options no longer used.
+- Lib directory is no longer needed.
+
+### Deprecated
+- Ability to merge custom options with defaults no longer supported.
 
 ### [1.3.0] - 2016-10-20
 #### Added

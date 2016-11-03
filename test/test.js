@@ -2,43 +2,36 @@
 
 require('mocha');
 var assert = require('assert');
+var support = require('./fixtures/support');
 var gulp = require('gulp');
 var taskR = require('../');
-var support = require('./fixtures/support');
 var msg;
 
 describe('taskR', function () {
     it('should throw an error when and instance of gulp is not the first argument', function (done) {
-        var taskR = support.taskR(taskR);
-        msg = 'taskR expects an instance of inst as the first argument';
+        msg = 'taskR expects an instance of gulp as the first argument';
         support.tryTaskR(msg, taskR, done);
+    });
+
+    it('should throw an error when an empty array of tasks is defined', function (done) {
+        msg = 'taskR expects an array of tasks as the second argument';
+        var noTask = support.doTaskR(taskR, gulp, []);
+        support.tryTaskR(msg, noTask, done);
     });
 
     it('should throw an error when a module can\'t be found', function (done) {
-        var taskR = support.taskR(taskR, gulp);
         msg = null;
-        support.tryTaskR(msg, taskR, done);
+        var build = support.doTaskR(taskR, gulp, ['build']);
+        support.tryTaskR(msg, build, done);
     });
 
-    it('should throw an error when two servers are defined', function (done) {
-        var taskR = support.taskR(taskR, gulp, 'default', {bsync: {}, express: {}});
-        msg = 'taskR expects either an express or browser-sync option';
-        support.tryTaskR(msg, taskR, done);
-    });
+    it('should find custom tasks without errors', function () {
+        var opts = {paths: {tasks: 'test/fixtures/lib/tasks/'}};
+        var func = support.doTaskR(taskR, gulp, ['default'], opts)();
+        assert(typeof func.default === 'function');
 
-    it('should throw an error when two linting module are defined', function (done) {
-        var taskR = support.taskR(taskR, gulp, 'default', {tslint: {}, jshint: {}});
-        msg = 'taskR expects either a jslinting or tslinting option';
-        support.tryTaskR(msg, taskR, done);
+        var funcs = support.doTaskR(taskR, gulp, ['default', 'clean'], opts)();
+        assert(typeof funcs.default === 'function');
+        assert(typeof funcs.clean === 'function');
     });
-
-    it('should find a single custom task without errors', function (done) {
-        var taskR = support.taskR(taskR, gulp, 'default', {paths: {tasks: 'lib/tasks/'}});
-        support.tryTaskR(msg, taskR, done);
-    });
-
-    it('should find an array of custom task without errors', function (done) {
-        var taskR = support.taskR(taskR, gulp, ['default', 'clean'], {paths: {tasks: 'lib/tasks/'}});
-        support.tryTaskR(msg, taskR, done);
-    })
 });

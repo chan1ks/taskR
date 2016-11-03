@@ -20,8 +20,8 @@ exports.tryTaskR = function (msg, fn, callback) {
     }
 };
 
-exports.taskR = function (fn, inst, task, opts) {
+exports.doTaskR = function (fn, inst, task, opts) {
     return function () {
-        fn(inst, task, opts);
-    }
+        return fn(inst, task, opts);
+    };
 };
